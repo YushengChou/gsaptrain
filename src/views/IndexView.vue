@@ -51,14 +51,29 @@
     </div>
     <div class="blank">
       <div class="blank_head">
-        Your&ensp;<span id="blank_text1">aaaaa</span>&ensp;made&ensp;<span id="blank_text2">bbbbb</span>.
+        Your&ensp;<span id="blank_text1">version</span>&ensp;made&ensp;<span id="blank_text2">scrollable</span>.
       </div>
       <div class="blank_body"></div>
     </div>
+    <div class="marquee">
+      <marquee>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum voluptate doloremque vel veritatis nobis
+        dolorem
+        voluptas! Ipsum, neque voluptate cumque officia vel quidem, similique quisquam itaque aliquid hic alias
+        adipisci!
+      </marquee>
+    </div>
     <div class="box2">
       <div class="img_inner">
-        <img src="https://assets.website-files.com/6006a29edf050225e91c8a1e/6233a3052c9a091326ff60ca_SLSF.svg" alt="img">
+        <img src="https://assets.website-files.com/6006a29edf050225e91c8a1e/6233a3052c9a091326ff60ca_SLSF.svg"
+          alt="img">
       </div>
+    </div>
+    <div class="box3"></div>
+    <div class="box4">
+      <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, rem sunt nisi et aliquid beatae
+        similique, praesentium consectetur fugit nam nostrum hic optio molestias neque ad tenetur voluptate ullam
+        consequatur!</p>
     </div>
   </div>
 </template>
@@ -84,25 +99,24 @@ export default {
       repeat: -1,
     })
     // random text
-    gsap.fromTo('#blank_text1', 1, {
-      text: 'random([?!@#$%, a@a_$%^&, ^&=-a])',
+    gsap.fromTo('#blank_text1', 1.5, {
+      text: 'random([?!@#$%n, v@a_$%^&, ^&=s-o])',
     }, {
       repeatRefresh: true,
       repeat: -1,
-      text: 'aaaaa'
+      text: 'random([version, story, brand])',
     })
-    gsap.fromTo('#blank_text2', 1, {
-      text: 'random([st^&*, @#$r*&, zxcKDJ])',
+    gsap.fromTo('#blank_text2', 1.5, {
+      text: 'random([st^&*ll*$^e, c@#ro*&l@, !o@#h%b&e])',
     }, {
       repeatRefresh: true,
       repeat: -1,
-      text: 'bbbbb'
+      text: 'random([scrollable, clickable, touchable])',
     })
-    document.addEventListener('scroll', function() {
-      if(window.pageYOffset > 969) {
-        console.log('1')
-      }
-    })
+    document.addEventListener('scroll', this.handleScroll)
+  },
+  unmounted() {
+    document.removeEventListener('scroll', this.handleScroll)
   },
   methods: {
     circleMove(e) {
@@ -141,15 +155,23 @@ export default {
         y: 0
       })
     },
+    handleScroll() {
+      if (window.pageYOffset > 968) {
+        gsap.to('.img_inner', 3, {
+          x: -4400
+        })
+      } else {
+        gsap.to('.img_inner', 3, {
+          x: 0
+        })
+      }
+      console.log('scroll')
+    },
   },
 }
 </script>
 
 <style lang="sass" scoped>
-*
-  box-sizing: border-box
-html
-  scroll-behavior: smooth
   body
     font-family: Verdana
     line-height: 1.5
@@ -242,4 +264,27 @@ html
         overflow: hidden
         display: flex
         align-items: center
+      .box3
+        max-width: 100%
+        height: 100vh
+        background-color: #123456
+      .marquee
+        position: sticky
+        top: 0
+        z-index: 3
+        background-color: green
+      .box4
+        max-width: 100%
+        margin: 0 auto
+        border: 1px solid #000
+        overflow: hidden
+        display: flex
+        .text
+          white-space: nowrap
+          animation: wordloop 20s linear infinite
+        @keyframes wordloop
+          0%
+            transform: translateX(100%)
+          100%
+            transform: translateX(-100%)
 </style>
