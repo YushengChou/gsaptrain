@@ -78,6 +78,7 @@
           consequatur!</p>
       </div>
     </div>
+    <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
 
 </template>
@@ -85,9 +86,13 @@
 <script>
 import { gsap } from 'gsap'
 import { TextPlugin } from 'gsap/TextPlugin.js'
+import HelloWorld from '@/components/HelloWorld.vue'
 gsap.registerPlugin(TextPlugin)
 export default {
   name: 'app',
+  components: {
+    HelloWorld
+  },
   mounted() {
     // logo color
     gsap.to('h1', 1, {

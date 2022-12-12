@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HelloWorld @click="test" msg="Welcome to Your Vue.js App" :boo="this.boo"/>
   </div>
 </template>
 
@@ -11,6 +11,18 @@ import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
   name: 'HomeView',
+  data() {
+    return {
+      boo: true,
+    }
+  },
+  computed: {
+  },
+  methods: {
+    test() {
+      this.boo = !this.boo
+    }
+  },
   components: {
     HelloWorld
   }

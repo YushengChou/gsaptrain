@@ -36,8 +36,17 @@
 export default {
   name: 'HelloWorld',
   props: {
-    msg: String
-  }
+    msg: String,
+    boo: Boolean,
+  },
+  computed: {
+
+  },
+  watch: {
+    boo: function() {
+      console.log('change')
+    }
+  },
 }
 </script>
 

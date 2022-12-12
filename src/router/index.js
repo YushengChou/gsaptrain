@@ -20,6 +20,11 @@ const routes = [
     name: 'index',
     component: () => import('../views/IndexView.vue')
   },
+  {
+    path: '/testvant',
+    name: 'testvant',
+    component: () => import('../views/TestVantView.vue')
+  },
 ]
 
 const router = createRouter({
