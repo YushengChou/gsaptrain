@@ -1,7 +1,9 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld @click="test" msg="Welcome to Your Vue.js App" :boo="this.boo"/>
+    <HelloWorld @click="test" msg="Welcome to Your Vue.js App" :boo="this.boo" />
+    <van-cell is-link @click="showPopup">展示弹出层</van-cell>
+    <van-popup v-model="show" get-container="body">内容</van-popup>
   </div>
 </template>
 
@@ -14,6 +16,7 @@ export default {
   data() {
     return {
       boo: true,
+      show: false,
     }
   },
   computed: {
@@ -21,7 +24,10 @@ export default {
   methods: {
     test() {
       this.boo = !this.boo
-    }
+    },
+    showPopup() {
+      this.show = true;
+    },
   },
   components: {
     HelloWorld

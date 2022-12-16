@@ -56,15 +56,15 @@
         </div>
         <div class="blank_body"></div>
       </div>
-      <div class="marquee">
+      <!-- <div class="marquee">
         <marquee>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum voluptate doloremque vel veritatis nobis
           dolorem
           voluptas! Ipsum, neque voluptate cumque officia vel quidem, similique quisquam itaque aliquid hic alias
           adipisci!
         </marquee>
-      </div>
-      <div class="box2">
+      </div> -->
+      <div class="box2" id="box2">
         <div class="img_inner">
           <img src="https://assets.website-files.com/6006a29edf050225e91c8a1e/6233a3052c9a091326ff60ca_SLSF.svg"
             alt="img">
@@ -78,7 +78,7 @@
           consequatur!</p>
       </div>
     </div>
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HelloWorld msg="Welcome to Your Vue.js App" />
   </div>
 
 </template>
@@ -122,10 +122,34 @@ export default {
       repeat: -1,
       text: 'random([scrollable, clickable, touchable])',
     })
-    document.addEventListener('scroll', this.handleScroll)
+
+    let box2 = document.querySelector('#box2')
+    document.addEventListener('wheel', (e) => {
+      // e.preventDefault()
+      console.log(window.pageYOffset)
+      if (window.pageYOffset > 874 && window.pageYOffset < 1100) {
+        // console.log('1')
+        box2.scrollLeft += e.deltaY
+        console.log(box2.scrollLeft)
+        document.body.style.overflow = 'hidden'
+        if (box2.scrollLeft < 1 || box2.scrollLeft > 2921) {
+          box2.style.position = 'relative'
+          document.body.style.overflow = 'auto'
+        } else {
+          box2.style.position = 'sticky'
+        }
+      } else {
+        document.body.style.overflow = 'auto'
+      }
+      // box2.scrollLeft < 2939
+    })
+
   },
   unmounted() {
-    document.removeEventListener('scroll', this.handleScroll)
+
+  },
+  created() {
+
   },
   methods: {
     circleMove(e) {
@@ -164,18 +188,6 @@ export default {
         y: 0
       })
     },
-    handleScroll() {
-      if (window.pageYOffset > 968) {
-        gsap.to('.img_inner', 3, {
-          x: -4400
-        })
-      } else {
-        gsap.to('.img_inner', 3, {
-          x: 0
-        })
-      }
-      console.log('scroll')
-    },
   },
 }
 </script>
@@ -184,6 +196,7 @@ export default {
   body
     font-family: Verdana
     line-height: 1.5
+    scrollbar-width: none
     img
       display: block
       vertical-align: bottom
@@ -274,6 +287,8 @@ export default {
           overflow: hidden
           display: flex
           align-items: center
+          position: sticky
+          top: 0
         .box3
           max-width: 100%
           height: 100vh
