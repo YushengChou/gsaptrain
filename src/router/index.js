@@ -25,6 +25,11 @@ const routes = [
     name: 'testvant',
     component: () => import('../views/TestVantView.vue')
   },
+  {
+    path: '/re',
+    name: 're',
+    component: () => import('../views/ReView.vue')
+  },
 ]
 
 const router = createRouter({
