@@ -7,6 +7,8 @@
         <button @click="myClick">clickA</button>
         <br>
         <button @click="myClickO">clickO</button>
+        <br>
+        <h1>123123</h1>
     </div>
 </template>
 

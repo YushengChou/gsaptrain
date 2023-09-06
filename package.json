@@ -10,8 +10,11 @@
   "dependencies": {
     "core-js": "^3.8.3",
     "gsap": "^3.11.3",
+    "normalize.css": "^8.0.1",
+    "reset-css": "^5.0.1",
     "vant": "^4.0.2",
     "vue": "^3.2.13",
+    "vue-loader": "^15.9.7",
     "vue-router": "^4.0.3",
     "vuex": "^4.1.0"
   },
